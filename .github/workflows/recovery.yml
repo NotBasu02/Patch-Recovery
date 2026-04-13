@@ -36,6 +36,7 @@ jobs:
       run: |
         chmod a+x script2.sh
         ./script2.sh || true
+        openssl genrsa -out phk.pem 4096
         python3 avbtool extract_public_key --key phh.pem --output phh.pub.bin
         python3 avbtool add_hash_footer --partition_name recovery --dynamic_partition_size --image r-patched.img --key phk.pem --algorithm SHA256_RSA4096
         mkdir output && cd output
